@@ -43,14 +43,14 @@ namespace BallanceAPI.Controllers
             {
                 var result = await _context.TradeOrders.Include(i => i.TradeOrdersTypes).Select(s => new { s.Id, s.Amount, s.TradeOrdersTypes.Name}).ToListAsync(); //get all the trade orders along with their types, select the desired columns and return a list of objects
                 //linq version
-                var linq = (from tradeOrders in _context.TradeOrders
-                           join tradeOrderTypes in _context.TradeOrdersTypes on tradeOrders.TradeOrdersTypes.Id equals tradeOrderTypes.Id
-                           select new
-                           {
-                               tradeOrders.Id,
-                               tradeOrders.Amount,
-                               tradeOrderTypes.Name
-                           });
+                //var linq = (from tradeOrders in _context.TradeOrders
+                //           join tradeOrderTypes in _context.TradeOrdersTypes on tradeOrders.TradeOrdersTypes.Id equals tradeOrderTypes.Id
+                //           select new
+                //           {
+                //               tradeOrders.Id,
+                //               tradeOrders.Amount,
+                //               tradeOrderTypes.Name
+                //           });
 
                 if (result != null)
                 {
@@ -65,6 +65,5 @@ namespace BallanceAPI.Controllers
                 throw e;
             }
         }//I know this function is more complicated than it should be
-
     }
 }
