@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Models\DataTransferObjects\" />
-    <Folder Include="Models\DbModels\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

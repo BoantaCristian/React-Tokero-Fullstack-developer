@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BallanceAPI.Models.DbModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,11 @@ namespace BallanceAPI.Models
         {
 
         }
+        public DbSet<Operation> Operations { get; set; }
+        public DbSet<OperationType> OperationTypes { get; set; }
+        public DbSet<Deposit> Deposits { get; set; }
+        public DbSet<Withdrawal> Withdrawals { get; set; }
+        public DbSet<TradeOrder> TradeOrders { get; set; }
+        public DbSet<TradeOrderType> TradeOrdersTypes { get; set; }
     }
 }
