@@ -29,8 +29,8 @@ namespace BallanceAPI.Controllers
         }
 
         [HttpGet]
-        [Route("GetWithdrawal")]
-        public IEnumerable<Withdrawal> GetWithdrawal()
+        [Route("GetWithdrawals")]
+        public IEnumerable<Withdrawal> GetWithdrawals()
         {
             return _context.Withdrawals;
         }
@@ -62,7 +62,7 @@ namespace BallanceAPI.Controllers
             catch (Exception e)
             {
                 return BadRequest(e);
-                throw;
+                throw e;
             }
         }//I know this function is more complicated than it should be
 
