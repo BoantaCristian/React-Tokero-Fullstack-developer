@@ -11,7 +11,15 @@ const Operations = (props) => {
     const pageCount = props.Deposits? Math.ceil(props.Deposits.length/pageSize) : 0
     
     useEffect(() => {
-        props.fetchDeposits()
+        switch (1) {
+            case 1:
+                props.fetchDeposits()
+                props.fetchTradeOrders()
+                break;
+        
+            default:
+                break;
+        }
         
     },[])
     const pages = _.range(1, pageCount + 1)
@@ -25,7 +33,7 @@ const Operations = (props) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>Amount</TableCell>
-                        <TableCell>Address</TableCell>
+                        <TableCell>From Address</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -57,9 +65,9 @@ const Operations = (props) => {
 
 const mapStateToProps = state => {
     return{
-        Deposits: state.operations.list,
-        Withdrawals: state.operations.list,
-        TradeOrders: state.operations.list
+        Deposits: state.operations.deposits,
+        Withdrawals: state.operations.withdrawals,
+        TradeOrders: state.operations.tradeOrders,
     }
 }
 

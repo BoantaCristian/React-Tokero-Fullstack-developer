@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import * as actions from "../services/actions/operations";
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
 
-const Withdrawals = (props) => {
+const TradeOrders = (props) => {
     useEffect(() => {
         switch (1) {
             case 1:
-                props.fetchWithdrawals()
+                props.fetchTradeOrders()
                 break;
         
             default:
@@ -22,16 +22,16 @@ const Withdrawals = (props) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>Amount</TableCell>
-                        <TableCell>To Address</TableCell>
+                        <TableCell>Trade Order Type</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {
-                        props.Withdrawals.map((record, index)=>{
+                        props.TradeOrders.map((record, index)=>{
                             return(
                                 <TableRow key={index}>
                                     <TableCell> {record.amount} </TableCell>
-                                    <TableCell> {record.toAddress} </TableCell>
+                                    <TableCell> {record.name} </TableCell>
                                 </TableRow>
                             )
                         })
@@ -44,12 +44,16 @@ const Withdrawals = (props) => {
 
 const mapStateToProps = state => {
     return{
-        Withdrawals: state.operations.withdrawals
+        Deposits: state.operations.deposits,
+        Withdrawals: state.operations.withdrawals,
+        TradeOrders: state.operations.tradeOrders,
     }
 }
 
 const mapActionToProps = {
-    fetchWithdrawals: actions.fetchWithdrawals
+    fetchDeposits: actions.fetchDeposits,
+    fetchWithdrawals: actions.fetchWithdrawals,
+    fetchTradeOrders: actions.fetchTradeOrders
 }
 
-export default connect(mapStateToProps, mapActionToProps) (Withdrawals)
+export default connect(mapStateToProps, mapActionToProps) (TradeOrders)

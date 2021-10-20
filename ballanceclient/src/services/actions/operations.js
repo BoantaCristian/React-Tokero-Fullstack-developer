@@ -4,7 +4,10 @@ export const ACTION_TYPES = {
     CREATE : 'CREATE',
     UPDATE : 'UPDATE',
     DELETE : 'DELETE',
-    FETCH_ALL : 'FETCH_ALL'
+    FETCH_ALL : 'FETCH_ALL',
+    GET_DEPOSITS : 'GET_DEPOSITS',
+    GET_WITHDRAWALS : 'GET_WITHDRAWALS',
+    GET_TRADEORDERS : 'GET_TRADEORDERS'
 }
 
 export const fetchWithdrawals = () => {
@@ -14,7 +17,7 @@ export const fetchWithdrawals = () => {
            .then(
                response => {
                    dispatch({
-                       type: ACTION_TYPES.FETCH_ALL,
+                       type: ACTION_TYPES.GET_WITHDRAWALS,
                        payload: response.data
                     })
                     console.log("withdrawals", response.data)
@@ -36,7 +39,7 @@ export const fetchDeposits = () => {
            .then(
                response => {
                    dispatch({
-                       type: ACTION_TYPES.FETCH_ALL,
+                       type: ACTION_TYPES.GET_DEPOSITS,
                        payload: response.data
                     })
                     console.log("deposits", response.data)
@@ -57,7 +60,7 @@ export const fetchTradeOrders = () => {
            .then(
                response => {
                    dispatch({
-                       type: ACTION_TYPES.FETCH_ALL,
+                       type: ACTION_TYPES.GET_TRADEORDERS,
                        payload: response.data
                     })
                     console.log("tradeOrders", response.data)
