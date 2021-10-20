@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { store } from './services/actions/store'
 import { Provider } from "react-redux"
 import { Paper } from '@material-ui/core'

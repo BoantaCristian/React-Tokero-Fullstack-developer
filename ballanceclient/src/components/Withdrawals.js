@@ -2,43 +2,41 @@ import React, {useState, useEffect} from 'react'
 import { connect } from "react-redux";
 import * as actions from "../services/actions/operations";
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
+import Pagination from './Pagination'
 
 const Withdrawals = (props) => {
     useEffect(() => {
-        switch (1) {
-            case 1:
-                props.fetchWithdrawals()
-                break;
-        
-            default:
-                break;
-        }
-        
+        props.fetchWithdrawals()        
     },[])
 
     return (
-        <TableContainer>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Amount</TableCell>
-                        <TableCell>To Address</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        props.Withdrawals.map((record, index)=>{
-                            return(
-                                <TableRow key={index}>
-                                    <TableCell> {record.amount} </TableCell>
-                                    <TableCell> {record.toAddress} </TableCell>
-                                </TableRow>
-                            )
-                        })
-                    }
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Amount</TableCell>
+                            <TableCell>To Address</TableCell>
+                            <TableCell>2FA Confirmed</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            props.Withdrawals.map((record, index)=>{
+                                return(
+                                    <TableRow key={index}>
+                                        <TableCell> {record.amount} </TableCell>
+                                        <TableCell> {record.toAddress} </TableCell>
+                                        <TableCell> {record.wasApprovedByUser2FA ? 'true' : 'false'} </TableCell>
+                                    </TableRow>
+                                )
+                            })
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <Pagination length={props.Withdrawals.length} wait={1000} />
+        </div>
     )
 }
 

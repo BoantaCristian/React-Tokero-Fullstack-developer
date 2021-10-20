@@ -1,80 +1,55 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from "react-redux";
 import * as actions from "../services/actions/operations";
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Divider } from '@material-ui/core'
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
 import _ from "lodash"
-const Operations = (props) => {
-    
-    const [d,setD] = useState([])
+import Pagination from './Pagination'
 
-    const pageSize = 5
-    const pageCount = props.Deposits? Math.ceil(props.Deposits.length/pageSize) : 0
-    
+const Operations = (props) => {
+   
     useEffect(() => {
-        switch (1) {
-            case 1:
-                props.fetchDeposits()
-                props.fetchTradeOrders()
-                break;
-        
-            default:
-                break;
-        }
-        
+        props.fetchDeposits()
+        console.log(props.Deposits.slice(0,1))
+        props.Deposits.slice(0,1)
     },[])
-    const pages = _.range(1, pageCount + 1)
-    console.log("asdasd",props.Deposits? Math.ceil(props.Deposits.length/pageSize) : 0)
+
     return (
         <div>
-            
-
-        <TableContainer>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Amount</TableCell>
-                        <TableCell>From Address</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {
-                        props.Deposits.map((record, index)=>{
-                            return(
-                                <TableRow key={index}>
-                                    <TableCell> {record.amount} </TableCell>
-                                    <TableCell> {record.fromAddress} </TableCell>
-                                </TableRow>
-                            )
-                        })
-                    }
-                </TableBody>
-            </Table>
-        </TableContainer>
-        <nav>
-            <ul className="pagination">
-                {
-                    pages.map((page) => {
-                        <li className="page-link"> {page} </li>
-                    })
-                }
-            </ul>
-        </nav>
-                    </div>
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Amount</TableCell>
+                            <TableCell>From Address</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            props.Deposits.map((record, index)=>{
+                                return(
+                                    <TableRow key={index}>
+                                        <TableCell> {record.amount} </TableCell>
+                                        <TableCell> {record.fromAddress} </TableCell>
+                                    </TableRow>
+                                )
+                            })
+                        }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <Pagination length={props.Deposits.length} wait={1000} />
+        </div>
     )
 }
 
 const mapStateToProps = state => {
     return{
-        Deposits: state.operations.deposits,
-        Withdrawals: state.operations.withdrawals,
-        TradeOrders: state.operations.tradeOrders,
+        Deposits: state.operations.deposits
     }
 }
 
 const mapActionToProps = {
-    fetchDeposits: actions.fetchDeposits,
-    fetchWithdrawals: actions.fetchWithdrawals,
-    fetchTradeOrders: actions.fetchTradeOrders
+    fetchDeposits: actions.fetchDeposits
 }
 
 export default connect(mapStateToProps, mapActionToProps) (Operations)

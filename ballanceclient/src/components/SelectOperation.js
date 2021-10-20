@@ -9,7 +9,6 @@ const SelectOperation = ({selectedOption, setSelectedOption}) => {
         setSelectedOption(e.target.value)
     }
     
-
     return (
         <div className="selectContainer">
             <Select value={operationSelected} displayEmpty className="select" onChange={selectOperations}>
