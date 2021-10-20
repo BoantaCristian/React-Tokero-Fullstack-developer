@@ -7,25 +7,8 @@ export const ACTION_TYPES = {
     FETCH_ALL : 'FETCH_ALL'
 }
 
-export const fetchAll = () => {
+export const fetchWithdrawals = () => {
     return dispatch => {
-        api.deposits()
-           .fetchAll()
-           .then(
-               response => {
-                   dispatch({
-                       type: ACTION_TYPES.FETCH_ALL,
-                       payload: response.data
-                    })
-                    console.log("deposits", response.data)
-               }
-           )
-           .catch(
-               err => {
-                   console.log(err)
-               }
-           )
-
         api.withdrawals()
            .fetchAll()
            .then(
@@ -42,7 +25,33 @@ export const fetchAll = () => {
                    console.log(err)
                }
            )
+        
+    }
+}  
 
+export const fetchDeposits = () => {
+    return dispatch => {
+        api.deposits()
+           .fetchAll()
+           .then(
+               response => {
+                   dispatch({
+                       type: ACTION_TYPES.FETCH_ALL,
+                       payload: response.data
+                    })
+                    console.log("deposits", response.data)
+               }
+           )
+           .catch(
+               err => {
+                   console.log(err)
+               }
+           )   
+    }
+}
+
+export const fetchTradeOrders = () => {
+    return dispatch => {
         api.tradeOrders()
            .fetchAll()
            .then(
@@ -51,7 +60,7 @@ export const fetchAll = () => {
                        type: ACTION_TYPES.FETCH_ALL,
                        payload: response.data
                     })
-                    console.log("trade orders", response.data)
+                    console.log("tradeOrders", response.data)
                }
            )
            .catch(
@@ -61,4 +70,4 @@ export const fetchAll = () => {
            )
         
     }
-}
+}  

@@ -19,3 +19,11 @@ body {
   padding: 25px;
 }
 
+.select{
+  width: 100%;
+}
+
+.selectContainer{
+  margin: 15px;
+}
+
