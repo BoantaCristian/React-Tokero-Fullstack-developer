@@ -6,12 +6,25 @@ import _ from "lodash"
 import Pagination from './Pagination'
 
 const Operations = (props) => {
-   
+    
+    const [paginatedDeposits, setPaginatedDeposits] = useState()
+    const [currentPage, setCurrentPage] = useState(1)
+    const [startIndex, setStartIndex] = useState()
+
     useEffect(() => {
         props.fetchDeposits()
-        console.log(props.Deposits.slice(0,1))
-        props.Deposits.slice(0,1)
     },[])
+    
+    useEffect(() => {
+        setTimeout(() => {
+            setPaginatedDeposits(props.Deposits.slice(0,5))
+            console.log(props.Deposits.slice(0,5))
+        }, 500);
+      }, [500]);
+
+    useEffect(() => {
+        setPaginatedDeposits(props.Deposits.slice(startIndex,startIndex + 5))
+    },[startIndex])
 
     return (
         <div>
@@ -37,7 +50,7 @@ const Operations = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Pagination length={props.Deposits.length} wait={1000} />
+            <Pagination length={props.Deposits.length} wait={100} currentPage={currentPage} setCurrentPage={setCurrentPage} setStartIndex={setStartIndex}/>
         </div>
     )
 }

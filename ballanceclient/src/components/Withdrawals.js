@@ -5,9 +5,24 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from
 import Pagination from './Pagination'
 
 const Withdrawals = (props) => {
+    const [paginatedWithdrawals, setPaginatedWithdrawals] = useState()
+    const [currentPage, setCurrentPage] = useState(1)
+    const [startIndex, setStartIndex] = useState()
+
     useEffect(() => {
         props.fetchWithdrawals()        
     },[])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setPaginatedWithdrawals(props.Withdrawals.slice(0,5))
+            console.log(props.Withdrawals.slice(0,5))
+        }, 500);
+      }, [500]);
+    
+      useEffect(() => {
+        setPaginatedWithdrawals(props.Withdrawals.slice(startIndex,startIndex + 5))
+    },[startIndex])
 
     return (
         <div>
@@ -35,7 +50,7 @@ const Withdrawals = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Pagination length={props.Withdrawals.length} wait={1000} />
+            <Pagination length={props.Withdrawals.length} wait={100} currentPage={currentPage} setCurrentPage={setCurrentPage} setStartIndex={setStartIndex}/>
         </div>
     )
 }

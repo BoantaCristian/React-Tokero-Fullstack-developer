@@ -5,11 +5,24 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from
 import Pagination from './Pagination'
 
 const TradeOrders = (props) => {
+    const [paginatedTradeOrders, setPaginatedTradeOrders] = useState()
+    const [currentPage, setCurrentPage] = useState(1)
+    const [startIndex, setStartIndex] = useState(0)
+
     useEffect(() => {
-        props.fetchTradeOrders()
-        console.log(props.TradeOrders.slice(0,5))
-        props.TradeOrders.slice(0,1)        
+        props.fetchTradeOrders()      
     },[])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setPaginatedTradeOrders(props.TradeOrders.slice(0,5))
+            console.log(props.TradeOrders.slice(0,5))
+        }, 500);
+      }, [500]);
+
+    useEffect(() => {
+        setPaginatedTradeOrders(props.TradeOrders.slice(startIndex,startIndex + 5))
+    },[startIndex])
 
     return (
         <div>
@@ -35,7 +48,7 @@ const TradeOrders = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Pagination length={props.TradeOrders.length} wait={1000} />
+            <Pagination length={props.TradeOrders.length} wait={100} currentPage={currentPage} setCurrentPage={setCurrentPage} setStartIndex={setStartIndex} />
         </div>
     )
 }
