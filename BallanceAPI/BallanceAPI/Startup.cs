@@ -39,8 +39,8 @@ namespace BallanceAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(options => options.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod()); //specify to cors the url of the frontend and any headers and methods are allowed from that source
             app.UseMvc();
-            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()); //specify to cors the url of the frontend and any headers and methods are allowed from that source
 
         }
     }
