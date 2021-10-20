@@ -16,9 +16,9 @@ const TradeOrders = (props) => {
     useEffect(() => {
         setTimeout(() => {
             setPaginatedTradeOrders(props.TradeOrders.slice(0,5))
-            console.log(props.TradeOrders.slice(0,5))
+            console.log("TeadeOrders Component - after slice", props.TradeOrders.slice(0,5))
         }, 500);
-      }, [500]);
+      }, []);
 
     useEffect(() => {
         setPaginatedTradeOrders(props.TradeOrders.slice(startIndex,startIndex + 5))
@@ -36,7 +36,7 @@ const TradeOrders = (props) => {
                     </TableHead>
                     <TableBody>
                         {
-                            props.TradeOrders.map((record, index)=>{
+                            props.TradeOrders.map((record, index)=>{  //replace with paginatedTradeOrders
                                 return(
                                     <TableRow key={index}>
                                         <TableCell> {record.amount} </TableCell>

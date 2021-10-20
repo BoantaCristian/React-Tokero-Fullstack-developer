@@ -5,6 +5,11 @@ const PaginationNumber = ({setPageSize}) => {
 
     const [pageSize, setSizeOfPage] = useState(5)
 
+    useEffect(() => {
+        console.log("PaginationNumber Component - page size:", pageSize)
+      }, [pageSize]);
+
+
     const changePageSize = (e) => {
         setSizeOfPage(e.target.value)
         setPageSize(e.target.value)

@@ -18,18 +18,18 @@ const Pagination = ({length, wait, currentPage, setCurrentPage, setStartIndex}) 
       
     useEffect(() => {
         setPageCount(Math.floor(length/pageSize))
-        setPages(_.range(1, pageCount + 1))
+        setPages(_.range(1, pageCount + 1)) //sau cu for(1-pageCount) pageSide.push
     }, [pageSize]);
     
     const changePage = (pageNumber) => {
         setCurrentPage(pageNumber)
-        setStartIndex((pageNumber -1) * pageSize)
-        console.log((pageNumber -1) * pageSize)
+        setStartIndex((pageNumber - 1) * pageSize)
+        console.log("Pagination Component - Start Index", (pageNumber -1) * pageSize)
     }
 
     return  (
         <div className="paginationContainer">
-            <PaginationNumber setPageSize={setPageSize} />
+            <PaginationNumber pageSize={pageSize} setPageSize={setPageSize} />
             <nav>
                 <ul className="pagination">
                     {

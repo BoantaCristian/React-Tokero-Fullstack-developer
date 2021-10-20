@@ -7,7 +7,7 @@ import Pagination from './Pagination'
 const Withdrawals = (props) => {
     const [paginatedWithdrawals, setPaginatedWithdrawals] = useState()
     const [currentPage, setCurrentPage] = useState(1)
-    const [startIndex, setStartIndex] = useState()
+    const [startIndex, setStartIndex] = useState(0)
 
     useEffect(() => {
         props.fetchWithdrawals()        
@@ -18,7 +18,7 @@ const Withdrawals = (props) => {
             setPaginatedWithdrawals(props.Withdrawals.slice(0,5))
             console.log(props.Withdrawals.slice(0,5))
         }, 500);
-      }, [500]);
+      }, []);
     
       useEffect(() => {
         setPaginatedWithdrawals(props.Withdrawals.slice(startIndex,startIndex + 5))
@@ -37,7 +37,7 @@ const Withdrawals = (props) => {
                     </TableHead>
                     <TableBody>
                         {
-                            props.Withdrawals.map((record, index)=>{
+                            props.Withdrawals.map((record, index)=>{  //replace with paginatedWithdrawals
                                 return(
                                     <TableRow key={index}>
                                         <TableCell> {record.amount} </TableCell>
