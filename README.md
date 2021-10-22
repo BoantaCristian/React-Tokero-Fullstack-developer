@@ -31,6 +31,7 @@ The application has a REST architecture (Representational State Transfer):
   
 - Improvements
   * Replace Js with Ts, because its more intuitive, has more options and is more developer oriented
+  * Apply naming conventions
   * Rethink design of tables with each type of operation, though they have defferent columns for each operation there can be a component with childs for headers, respective rows, resulting in code legibility and a better understanding
   * Fix the issue that sometimes pagination buttons are not rendered (maybe a delay on render child)
   * Fix **slice()** function that doesn't occurs in the script on hooks (mount component / update events), but displays well in console. Sometimes, after some delays and calls through set state the method works and the sliced array is rendered, but in most cases it returns undefined, therefore the algorithm needs to be updated
